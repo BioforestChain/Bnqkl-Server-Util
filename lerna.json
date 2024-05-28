@@ -1,0 +1,9 @@
+{
+    "packages": ["packages/util"],
+    "version": "0.7.22",
+    "npmClient": "yarn",
+    "publishConifg": {
+        "registry": "http://192.168.250.245:4873/"
+    },
+    "exact": true
+}

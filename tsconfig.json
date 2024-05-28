@@ -1,0 +1,9 @@
+{
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./packages/util/tsconfig.json"
+        }
+    ]
+}
