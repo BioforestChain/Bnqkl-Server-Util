@@ -1,6 +1,6 @@
 {
     "name": "@bnqkl/server-util",
-    "version": "0.7.22",
+    "version": "1.0.0",
     "description": "bnqkl server util",
     "main": "build/src/index.js",
     "type": "commonjs",
