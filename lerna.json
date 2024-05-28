@@ -1,9 +1,10 @@
 {
     "packages": ["packages/util"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "npmClient": "yarn",
     "publishConifg": {
-        "registry": "http://192.168.250.245:4873/"
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     },
     "exact": true
 }

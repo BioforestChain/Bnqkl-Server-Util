@@ -1,6 +1,6 @@
 {
     "name": "@bnqkl/server-util",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "bnqkl server util",
     "main": "build/src/index.js",
     "type": "commonjs",
@@ -38,5 +38,6 @@
         "@types/amqplib": "^0.10.1",
         "@types/express": "^4.17.13",
         "@types/request": "^2.48.8"
-    }
+    },
+    "gitHead": "71bda92b83444d192c542fff9dbe6a61e25ce45e"
 }
