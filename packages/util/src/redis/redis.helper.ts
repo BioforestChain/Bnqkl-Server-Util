@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import { RedisDataType } from "./redis.constant";
+import { REDIS_DATA_TYPE } from "./redis.constant";
 
 export class RedisHelper {
     static getDataKey(name: string, entityId: string) {
@@ -27,7 +27,7 @@ export class RedisHelper {
         return `list:${name}:${entityId}:${keyType}`;
     }
 
-    static getDataChangeKey(name: string, dataType: RedisDataType, entityId: string, keyType?: string) {
+    static getDataChangeKey(name: string, dataType: REDIS_DATA_TYPE, entityId: string, keyType?: string) {
         return `dataChange:${name}:${entityId}:${dataType}${keyType ? `:${keyType}` : ""}`;
     }
 

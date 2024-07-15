@@ -1,12 +1,12 @@
 import { forwardRef, Inject, Injectable, NestMiddleware } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
 import { Logger } from "../../log4j/log4j";
-import { RequestStatRedisEntity } from "../../redis";
+import { RequestStatRedisRepository } from "../../redis";
 
 @Injectable()
 export class HttpRequestMiddleware implements NestMiddleware {
-    @Inject(forwardRef(() => RequestStatRedisEntity))
-    private __requestStatRedisEntity!: RequestStatRedisEntity;
+    @Inject(forwardRef(() => RequestStatRedisRepository))
+    private __requestStatRedisRepository!: RequestStatRedisRepository;
 
     async use(req: Request, res: Response, next: NextFunction) {
         const start = Date.now();
@@ -36,9 +36,9 @@ export class HttpRequestMiddleware implements NestMiddleware {
         } else {
             // Logger.access(JSON.stringify(logFormat, null, 2));
         }
-        await this.__requestStatRedisEntity.incrApiDailyCount(req.path);
+        await this.__requestStatRedisRepository.incrApiDailyCount(req.path);
         if (req.ip) {
-            await this.__requestStatRedisEntity.incrIpCallInterfaceDailyCount(req.ip);
+            await this.__requestStatRedisRepository.incrIpCallInterfaceDailyCount(req.ip);
         }
     }
 }

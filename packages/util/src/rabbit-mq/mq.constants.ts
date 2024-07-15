@@ -9,7 +9,7 @@ export const DEAD_LETTER_POSTFIX = "deadLetter";
 export const DELAY_RETRY_POSTFIX = "delayRetry";
 
 /**交换机类型 */
-export enum ExchangeType {
+export enum EXCHANGE_TYPE {
     /**直接 */
     DIRECT = "direct",
     /**主题订阅 */

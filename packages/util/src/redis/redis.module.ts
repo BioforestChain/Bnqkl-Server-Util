@@ -1,9 +1,9 @@
 import { Module, forwardRef } from "@nestjs/common";
-import { RequestStatRedisEntity } from "./entity";
+import { RequestStatRedisRepository } from "./repository";
 
 @Module({
     imports: [],
-    providers: [RequestStatRedisEntity],
-    exports: [RequestStatRedisEntity],
+    providers: [RequestStatRedisRepository],
+    exports: [RequestStatRedisRepository],
 })
 export class RedisBaseModule {}

@@ -1,5 +1,5 @@
 import { Channel, ConfirmChannel, Options } from "amqplib";
-import { DEAD_LETTER_POSTFIX, DELAY_RETRY_POSTFIX, ExchangeType, MQ_CONSUME_MAX_SPEED } from "./mq.constants";
+import { DEAD_LETTER_POSTFIX, DELAY_RETRY_POSTFIX, EXCHANGE_TYPE, MQ_CONSUME_MAX_SPEED } from "./mq.constants";
 import { PromiseOut } from "@bnqkl/util-node";
 import { Logger } from "../log4j/log4j";
 import { rabbitMQCore } from "./rabbit-mq.core";
@@ -146,7 +146,7 @@ export class MqHelper {
         const exchangeOpts: Options.AssertExchange = bTemp ? { durable: false, autoDelete: true } : { durable: true };
         const initNormal = async () => {
             // 声明交换机
-            await channel.assertExchange(realExchangeName, ExchangeType.DIRECT, exchangeOpts);
+            await channel.assertExchange(realExchangeName, EXCHANGE_TYPE.DIRECT, exchangeOpts);
             // 声明消息队列
             const queueName = this.getNormalQueueName(routingKey, bTemp, mqId);
             await channel.assertQueue(
@@ -164,7 +164,7 @@ export class MqHelper {
         };
         const initDLX = async () => {
             // 声明死信交换机
-            await channel.assertExchange(realDlxExchangeName, ExchangeType.DIRECT, exchangeOpts);
+            await channel.assertExchange(realDlxExchangeName, EXCHANGE_TYPE.DIRECT, exchangeOpts);
             // 声明死信消息队列
             const queueName = this.getDLXQueueName(routingKey, bTemp, mqId);
             await channel.assertQueue(queueName, bTemp ? { durable: false, autoDelete: true, exclusive: true } : { durable: true });

@@ -2,15 +2,15 @@ import { Injectable } from "@bnqkl/util-node";
 import { memTimeCache, MEM_TIME_CACHE_STRATEGY, sleep } from "../../helper";
 import { BFMetaSignUtil } from "@bfmeta/sign-util";
 import { PromiseOut } from "@bnqkl/util-node";
-import { GlobalValueBaseEntityId, MqBaseKeyType, RedisBaseEntityName } from "../redis.constant";
-import { RedisEntity } from "../redis.entity";
+import { GLOBAL_VALUE_BASE_ENTITY_ID, MQ_BASE_KEY_TYPE, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant";
+import { RedisRepository } from "../redis.repository";
 import { Logger } from "../../log4j/log4j";
 
 /**全局的Redis数据操作模型基类 */
 @Injectable()
-export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}> extends RedisEntity {
+export abstract class GlobalValueRedisBaseRepository<BusinessConfig extends {} = {}> extends RedisRepository {
     constructor() {
-        super(RedisBaseEntityName.GLOBAL_VALUE);
+        super(REDIS_BASE_REPOSITORY_NAME.GLOBAL_VALUE);
         const k = process.env["serverKey"];
         if (this.getBfmetaSignUtil() && k) {
             this.getBfmetaSignUtil()
@@ -56,13 +56,13 @@ export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}>
             serverKeypair.secretKey,
         );
         // 这个值存到redis
-        await this.setKeyValue(GlobalValueBaseEntityId.CONFIG, hkey as string, Buffer.from(result.encryptedMessage).toString("base64"));
+        await this.setKeyValue(GLOBAL_VALUE_BASE_ENTITY_ID.CONFIG, hkey as string, Buffer.from(result.encryptedMessage).toString("base64"));
         return true;
     }
 
     @memTimeCache({ time: MEM_TIME_CACHE_STRATEGY.ONE_SECOND })
     async getConfig(): Promise<BusinessConfig> {
-        let allKeys = await this.getAllKeys(GlobalValueBaseEntityId.CONFIG);
+        let allKeys = await this.getAllKeys(GLOBAL_VALUE_BASE_ENTITY_ID.CONFIG);
         const config = {};
         for (const key of allKeys) {
             if (key === "businessConfig") {
@@ -86,7 +86,7 @@ export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}>
 
     @memTimeCache({ time: MEM_TIME_CACHE_STRATEGY.ONE_SECOND })
     async getConfigByKey<T extends keyof BusinessConfig>(hkey: T): Promise<BusinessConfig[T] | undefined> {
-        let encryptConfig = await this.getKeyValue(GlobalValueBaseEntityId.CONFIG, hkey as string);
+        let encryptConfig = await this.getKeyValue(GLOBAL_VALUE_BASE_ENTITY_ID.CONFIG, hkey as string);
         if (!encryptConfig) {
             return;
         }
@@ -110,7 +110,7 @@ export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}>
      * @returns
      */
     async isConsumeComplete(routingKey: string, data: object) {
-        return await this.isSetMember(GlobalValueBaseEntityId.MQ, MqBaseKeyType.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
+        return await this.isSetMember(GLOBAL_VALUE_BASE_ENTITY_ID.MQ, MQ_BASE_KEY_TYPE.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
     }
 
     /**
@@ -120,7 +120,7 @@ export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}>
      * @returns
      */
     async setConsumeComplete(routingKey: string, data: object) {
-        return await this.addToSet(GlobalValueBaseEntityId.MQ, MqBaseKeyType.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
+        return await this.addToSet(GLOBAL_VALUE_BASE_ENTITY_ID.MQ, MQ_BASE_KEY_TYPE.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
     }
 
     /**
@@ -130,6 +130,6 @@ export abstract class GlobalValueRedisBaseEntity<BusinessConfig extends {} = {}>
      * @returns
      */
     async delConsumeComplete(routingKey: string, data: object) {
-        return await this.delFromSet(GlobalValueBaseEntityId.MQ, MqBaseKeyType.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
+        return await this.delFromSet(GLOBAL_VALUE_BASE_ENTITY_ID.MQ, MQ_BASE_KEY_TYPE.CONSUME_COMPLETE, this.__getConsumerKey(routingKey, data));
     }
 }

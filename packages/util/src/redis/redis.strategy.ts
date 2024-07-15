@@ -1,5 +1,5 @@
 import { EventEmitterPro } from "@bnqkl/util-node";
-import { CHANGE_ADD_FLAG, CHANGE_DEL_FLAG, RedisDataType } from "./redis.constant";
+import { CHANGE_ADD_FLAG, CHANGE_DEL_FLAG, REDIS_DATA_TYPE } from "./redis.constant";
 import { redisCore } from "./redis.core";
 import { RedisHelper } from "./redis.helper";
 
@@ -18,7 +18,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
             if (!(hArgs instanceof Array)) {
                 hArgs = [hArgs];
             }
-            const dataType = RedisDataType.KEY;
+            const dataType = REDIS_DATA_TYPE.KEY;
             const promises = hArgs.map(async (arg) => {
                 const keyType = arg[0];
                 if (!this.isNeedSave(dataType, keyType)) {
@@ -37,7 +37,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
             if (!(hArgs instanceof Array)) {
                 hArgs = [hArgs];
             }
-            const dataType = RedisDataType.COUNTER;
+            const dataType = REDIS_DATA_TYPE.COUNTER;
             const promises = hArgs.map(async (arg) => {
                 const keyType = arg[0];
                 if (!this.isNeedSave(dataType, keyType)) {
@@ -53,7 +53,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
          * 无序列表数据增加
          */
         this.on("onSetAdd", async (entityId: string, keyType: string, members: string | string[]) => {
-            const dataType = RedisDataType.SET;
+            const dataType = REDIS_DATA_TYPE.SET;
             if (!this.isNeedSave(dataType, keyType)) {
                 return;
             }
@@ -77,7 +77,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
          * 无序列表数据删除
          */
         this.on("onSetDelete", async (entityId: string, keyType: string, members: string | string[]) => {
-            const dataType = RedisDataType.SET;
+            const dataType = REDIS_DATA_TYPE.SET;
             if (!this.isNeedSave(dataType, keyType)) {
                 return;
             }
@@ -101,7 +101,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
          * 有序列表数据增加
          */
         this.on("onZSetAdd", async (entityId: string, keyType: string, members: ServerUtil.Redis.ZMember | ServerUtil.Redis.ZMember[]) => {
-            const dataType = RedisDataType.ZSET;
+            const dataType = REDIS_DATA_TYPE.ZSET;
             if (!this.isNeedSave(dataType, keyType)) {
                 return;
             }
@@ -125,7 +125,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
          * 有序列表数据删除
          */
         this.on("onZSetDelete", async (entityId: string, keyType: string, members: string | string[]) => {
-            const dataType = RedisDataType.ZSET;
+            const dataType = REDIS_DATA_TYPE.ZSET;
             if (!this.isNeedSave(dataType, keyType)) {
                 return;
             }
@@ -149,7 +149,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
          * 哈希表变化
          */
         this.on("onHashChanged", async (entityId: string, keyType: string, ...hArgs: [string, string | number][]) => {
-            const dataType = RedisDataType.HASH;
+            const dataType = REDIS_DATA_TYPE.HASH;
             if (!this.isNeedSave(dataType, keyType)) {
                 return;
             }
@@ -169,11 +169,11 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
         return redisCore.redis;
     }
 
-    getSaveOption(dataType: RedisDataType, keyType: string) {
+    getSaveOption(dataType: REDIS_DATA_TYPE, keyType: string) {
         return this.__options[dataType]?.[keyType];
     }
 
-    isNeedSave(dataType: RedisDataType, keyType: string) {
+    isNeedSave(dataType: REDIS_DATA_TYPE, keyType: string) {
         const saveOption = this.getSaveOption(dataType, keyType);
         return saveOption !== undefined;
     }
@@ -185,7 +185,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
      * @param keyType
      * @returns
      */
-    getDataChangeKey(dataType: RedisDataType, entityId: string, keyType?: string) {
+    getDataChangeKey(dataType: REDIS_DATA_TYPE, entityId: string, keyType?: string) {
         return RedisHelper.getDataChangeKey(this.__redisType, dataType, entityId, keyType);
     }
 
@@ -196,7 +196,7 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
      * @param keyType
      * @returns
      */
-    async getDataChangeInfo(dataType: RedisDataType, entityId: string, keyType: string) {
+    async getDataChangeInfo(dataType: REDIS_DATA_TYPE, entityId: string, keyType: string) {
         return await this.__redis.hGetAll(this.getDataChangeKey(dataType, entityId, keyType));
     }
 
@@ -207,5 +207,5 @@ export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOpt
      * @param keyType
      * @returns
      */
-    abstract saveChange(dataType: RedisDataType, entityId: string, keyType: string): Promise<boolean>;
+    abstract saveChange(dataType: REDIS_DATA_TYPE, entityId: string, keyType: string): Promise<boolean>;
 }

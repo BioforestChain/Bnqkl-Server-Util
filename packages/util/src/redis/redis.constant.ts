@@ -1,5 +1,5 @@
 /**redis数据结构类型 */
-export const enum RedisDataType {
+export const enum REDIS_DATA_TYPE {
     /**普通key */
     KEY = "key",
     /**计数器 */
@@ -14,8 +14,8 @@ export const enum RedisDataType {
     LIST = "list",
 }
 
-/**RedisBaseEntity名字 */
-export const enum RedisBaseEntityName {
+/**RedisBaseRepository名字 */
+export const enum REDIS_BASE_REPOSITORY_NAME {
     /**全局信息 */
     GLOBAL_VALUE = "globalValue",
 }
@@ -39,7 +39,7 @@ export class RedisPageData<T> {
 }
 
 /**全局唯一id枚举 */
-export const enum GlobalValueBaseEntityId {
+export const enum GLOBAL_VALUE_BASE_ENTITY_ID {
     /**每日接口统计信息 */
     API_STAT_INFO = "apiStatInfo",
     /**ip每日调用接口次数的统计信息 */
@@ -51,7 +51,7 @@ export const enum GlobalValueBaseEntityId {
 }
 
 /**mq相关key类型 */
-export const enum MqBaseKeyType {
+export const enum MQ_BASE_KEY_TYPE {
     /**消费者已消费完成集合 */
     CONSUME_COMPLETE = "consumeComplete",
 }

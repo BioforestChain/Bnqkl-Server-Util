@@ -3,8 +3,8 @@ import { RedisPageData } from "./redis.constant";
 import { redisCore } from "./redis.core";
 import { RedisHelper } from "./redis.helper";
 
-/**RedisEntity */
-export class RedisEntity implements ServerUtil.Redis.RedisEntity {
+/**RedisRepository */
+export class RedisRepository implements ServerUtil.Redis.RedisRepository {
     /**忽略数据变化的对象集合 */
     private __ignoreDataChangeSet = new Set<string>();
 

@@ -1,13 +1,13 @@
 import { Injectable } from "@bnqkl/util-node";
 import { timeFormaterToDate } from "../../helper";
-import { GlobalValueBaseEntityId, RedisBaseEntityName } from "../redis.constant";
+import { GLOBAL_VALUE_BASE_ENTITY_ID, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant";
 import { redisCore } from "../redis.core";
-import { RedisEntity } from "../redis.entity";
+import { RedisRepository } from "../redis.repository";
 
 @Injectable()
-export class RequestStatRedisEntity extends RedisEntity {
+export class RequestStatRedisRepository extends RedisRepository {
     constructor() {
-        super(RedisBaseEntityName.GLOBAL_VALUE);
+        super(REDIS_BASE_REPOSITORY_NAME.GLOBAL_VALUE);
     }
 
     /**
@@ -16,7 +16,7 @@ export class RequestStatRedisEntity extends RedisEntity {
      * @returns
      */
     async incrApiDailyCount(path: string) {
-        const key = `${GlobalValueBaseEntityId.API_STAT_INFO}:${timeFormaterToDate()}`;
+        const key = `${GLOBAL_VALUE_BASE_ENTITY_ID.API_STAT_INFO}:${timeFormaterToDate()}`;
         return await this.incrbyCounterNum(key, path, 1);
     }
 
@@ -26,7 +26,7 @@ export class RequestStatRedisEntity extends RedisEntity {
      * @returns
      */
     async incrIpCallInterfaceDailyCount(ip: string) {
-        const key = `${GlobalValueBaseEntityId.IP_CALL_INTERFACE_STATINFO}:${timeFormaterToDate()}`;
+        const key = `${GLOBAL_VALUE_BASE_ENTITY_ID.IP_CALL_INTERFACE_STATINFO}:${timeFormaterToDate()}`;
         return await this.incrbyCounterNum(key, ip, 1);
     }
 
@@ -34,7 +34,7 @@ export class RequestStatRedisEntity extends RedisEntity {
      * 获取所有ip的每日调用接口次数
      */
     async getIpCallInterfaceStatInfo(): Promise<{ [key: string]: string }> {
-        const key = `${GlobalValueBaseEntityId.IP_CALL_INTERFACE_STATINFO}:${timeFormaterToDate()}`;
+        const key = `${GLOBAL_VALUE_BASE_ENTITY_ID.IP_CALL_INTERFACE_STATINFO}:${timeFormaterToDate()}`;
         return await redisCore.redis.hGetAll(this.getDataKey(key));
     }
 }

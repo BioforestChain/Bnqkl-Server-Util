@@ -10,7 +10,7 @@ declare global {
             };
 
             export type EventEmitterPro<EM = {}, EM2 = never> = import("@bnqkl/util-node").EventEmitterPro<EM, EM2>;
-            export type RedisDataType = import("./redis.constant").RedisDataType;
+            export type RedisDataType = import("./redis.constant").REDIS_DATA_TYPE;
 
             export interface RedisConfig {
                 /**是否使用布隆过滤器 */
@@ -33,8 +33,8 @@ declare global {
             export type ZUnionOptions = ZInterOptions;
             export type ZUnionStoreOptions = ZUnionOptions;
 
-            /**RedisEntity */
-            export interface RedisEntity {
+            /**RedisRepository */
+            export interface RedisRepository {
                 /**
                  * 忽略某个对象的数据变化
                  */
@@ -744,19 +744,19 @@ declare global {
             };
 
             /**Redis选项的普通key定义 */
-            export type RedisOptKey<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.KEY];
+            export type RedisOptKey<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.KEY];
             /**Redis选项的计数器定义 */
-            export type RedisOptCounter<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.COUNTER];
+            export type RedisOptCounter<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.COUNTER];
             /**Redis选项的布隆过滤器定义 */
-            export type RedisOptBloom<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.SET];
+            export type RedisOptBloom<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.SET];
             /**Redis选项的无序集合定义 */
-            export type RedisOptSet<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.SET];
+            export type RedisOptSet<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.SET];
             /**Redis选项的有序集合（zset）定义 */
-            export type RedisOptZSet<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.ZSET];
+            export type RedisOptZSet<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.ZSET];
             /**Redis选项的哈希表定义 */
-            export type RedisOptHash<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.HASH];
+            export type RedisOptHash<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.HASH];
             /**Redis选项的列表定义 */
-            export type RedisOptList<T extends RedisOptionType> = T[import("./redis.constant").RedisDataType.LIST];
+            export type RedisOptList<T extends RedisOptionType> = T[import("./redis.constant").REDIS_DATA_TYPE.LIST];
 
             export type UnknownMutArg = unknown[];
             export type FlatArray<T> = T extends UnknownMutArg ? { [P in keyof T]: [T[P], string] } : never;
