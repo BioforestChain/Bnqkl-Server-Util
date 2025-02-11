@@ -11,11 +11,7 @@ export class HttpRequestMiddleware implements NestMiddleware {
     async use(req: Request, res: Response, next: NextFunction) {
         const start = Date.now();
         res.on("finish", () => {
-            const costTime = Date.now() - start;
-            const msg = `path:${req.path} costTime:${costTime} ms`;
-            if (costTime > 200) {
-                Logger.warn(msg);
-            }
+            this.printLog(req, start);
         });
         next();
         const logFormat = {
@@ -39,6 +35,15 @@ export class HttpRequestMiddleware implements NestMiddleware {
         await this.__requestStatRedisRepository.incrApiDailyCount(req.path);
         if (req.ip) {
             await this.__requestStatRedisRepository.incrIpCallInterfaceDailyCount(req.ip);
+        }
+    }
+
+    /**打印日志 */
+    printLog(req: Request, startTimestamp: number) {
+        const costTime = Date.now() - startTimestamp;
+        const msg = `path:${req.path} costTime:${costTime} ms`;
+        if (costTime > 200) {
+            Logger.warn(msg);
         }
     }
 }

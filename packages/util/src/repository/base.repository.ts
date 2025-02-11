@@ -39,15 +39,13 @@ export class BaseRepository<T extends {}> extends Repository<T> {
     }
 
     async findByPage(options: FindManyOptions<T>, page = 1, pageSize = 10): Promise<BasePageData<T>> {
-        const pageData = new BasePageData<T>(page, pageSize);
-        pageData.dataList = await this.find({ ...options, skip: (page - 1) * pageSize, take: pageSize + 1 });
-        return pageData;
+        const dataList = await this.find({ ...options, skip: (page - 1) * pageSize, take: pageSize + 1 });
+        return new BasePageData<T>(page, pageSize, dataList);
     }
 
     async findByPageNormal(options: FindManyOptions<T>, page = 1, pageSize = 10): Promise<PageData<T>> {
-        const pageData = new PageData<T>(page, pageSize);
-        pageData.dataList = await this.find({ ...options, skip: (page - 1) * pageSize, take: pageSize });
-        pageData.total = await this.count(options);
-        return pageData;
+        const dataList = await this.find({ ...options, skip: (page - 1) * pageSize, take: pageSize });
+        const total = await this.count(options);
+        return new PageData<T>(page, pageSize, dataList, total);
     }
 }

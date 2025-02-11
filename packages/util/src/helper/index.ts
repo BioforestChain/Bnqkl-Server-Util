@@ -13,3 +13,4 @@ export * from "./redis-lock.helper";
 export * from "./jsbi.helper";
 export * from "./ipc.helper";
 export * from "./audit.helper";
+export * from "./sms.helper";

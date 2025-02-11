@@ -33,10 +33,22 @@ declare global {
                     maxLevel: string;
                 };
                 audit: {
+                    /**审核文本和图片的账号信息 */
                     secretId: string;
                     secretKey: string;
                     bucketName: string;
                     bucketRegion: string;
+                    /**验证手机号运营商三要素的账号信息 */
+                    phone3Element: {
+                        secretId: string;
+                        secretKey: string;
+                    };
+                };
+                /**短信 */
+                sms: {
+                    url: string;
+                    apikey: string;
+                    sign: string;
                 };
             }
         }

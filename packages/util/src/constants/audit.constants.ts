@@ -10,3 +10,14 @@ export const enum TEXT_AUDIT_LEVEL {
     STRONGLY = "Abuse,Porn,Illegal,Politics,Ads",
     EXTREMELY = "Abuse,Porn,Illegal,Politics,Terrorism,Ads",
 }
+
+export const enum IMAGE_AUDIT_LEVEL {
+    SLIGHTLY = "Porn",
+    SOFT = "Porn,Ads",
+    NORMAL = "Porn,Ads,Politics",
+    STRONGLY = "Porn,Ads,Politics,Ads",
+    EXTREMELY = "Porn,Ads,Politics,Ads,TerrorismInfo",
+}
+
+/**身份证OCR信息在redis的过期时间（秒） */
+export const REDIS_ID_CARD_OCR_EXPIRE_TIME = 60 * 60 * 24;

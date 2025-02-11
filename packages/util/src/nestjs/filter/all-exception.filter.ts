@@ -36,11 +36,7 @@ export class AllExceptionFilter implements ExceptionFilter {
         if (status === HttpStatus.NOT_FOUND) {
             data.errorMsg = `资源不存在！接口 ${request.method} -> ${request.url} 无效！`;
         }
-        if (data.body && data.body.secret) {
-            // 不打印私钥
-            delete data.body.secret;
-        }
-        Logger.error(data);
+        this.printLog(data);
 
         // 处理返回页面的错误信息
         let errorCode = error_code;
@@ -57,5 +53,14 @@ export class AllExceptionFilter implements ExceptionFilter {
             path: request.url,
             version: process.env["VERSION"] as string,
         });
+    }
+
+    /**打印日志 */
+    printLog(data: any) {
+        if (data.body && data.body.secret) {
+            // 不打印私钥
+            delete data.body.secret;
+        }
+        Logger.error(data);
     }
 }

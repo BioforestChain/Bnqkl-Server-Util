@@ -9,10 +9,11 @@ export const getPagination = (page: number, pageSize: number, total: number) => 
 };
 
 export class BasePageData<T> {
-    constructor(public page: number = 1, public pageSize: number = 10, public dataList: T[] = []) {
+    constructor(public readonly page: number = 1, public readonly pageSize: number = 10, public readonly dataList: T[] = []) {
         this.page = page;
         this.pageSize = pageSize;
     }
+
     map<R>(mapper: (item: T, index: number) => R) {
         return this.replaceDataList(this.dataList.map(mapper));
     }
@@ -26,14 +27,14 @@ export class PageData<T> extends BasePageData<T> {
         page: number = 1,
         pageSize: number = 10,
         dataList: T[] = [],
-        public total = 0,
-        public hasMore = total - (page - 1) * pageSize > pageSize,
-        public skip = (page - 1) * pageSize,
+        public readonly total = 0,
+        public readonly hasMore = total - (page - 1) * pageSize > pageSize,
+        public readonly skip = (page - 1) * pageSize,
     ) {
         super(page, pageSize, dataList);
     }
 
-    replaceDataList<R>(dataList: R[], total: number = 0) {
-        return new PageData(this.page, this.pageSize, dataList, total);
+    replaceDataList<R>(dataList: R[]) {
+        return new PageData(this.page, this.pageSize, dataList, this.total, this.hasMore);
     }
 }

@@ -86,6 +86,19 @@ export class CommonHelper {
     }
 
     /**
+     * 获取n位随机数
+     * @param n
+     * @returns
+     */
+    static getRandomNum(n: number): string {
+        let str = "";
+        for (let i = 0; i < n; i++) {
+            str += Math.floor(Math.random() * 10);
+        }
+        return str;
+    }
+
+    /**
      * 给字符串加0前缀
      * @param num
      * @param length

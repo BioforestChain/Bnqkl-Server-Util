@@ -1,5 +1,5 @@
 import * as fs from "fs-extra";
-import { RedisPageData } from "./redis.constant";
+import { PageData } from "../helper";
 import { redisCore } from "./redis.core";
 import { RedisHelper } from "./redis.helper";
 
@@ -511,11 +511,11 @@ export class RedisRepository implements ServerUtil.Redis.RedisRepository {
         minScore = -Infinity,
         maxScore = Infinity,
         rev = true,
-    ): Promise<RedisPageData<T>> {
+    ): Promise<PageData<T>> {
         const total = await this.getZSetMemberCount(entityId, keyType, minScore, maxScore);
         const zSetPageData = await this.__getZSetPageData(entityId, keyType, page, pageSize, valueFunc, filter, minScore, maxScore, rev);
         if (zSetPageData.success === true) {
-            const pageData = new RedisPageData<T>(page, pageSize, zSetPageData.datas, total);
+            const pageData = new PageData<T>(page, pageSize, zSetPageData.datas, total);
             return pageData;
         }
         // 有需要删除的无效值，直到返回数据足够
@@ -544,7 +544,7 @@ export class RedisRepository implements ServerUtil.Redis.RedisRepository {
         if (!newzSetPageData.success) {
             throw new Error(`getzSetPageData entityId:${entityId} keyType:${keyType.toString()} error`);
         }
-        const pageData = new RedisPageData<T>(page, pageSize, newzSetPageData.datas, newTotal);
+        const pageData = new PageData<T>(page, pageSize, newzSetPageData.datas, newTotal);
         return pageData;
     }
 

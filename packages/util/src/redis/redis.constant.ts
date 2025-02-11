@@ -26,18 +26,6 @@ export const CHANGE_ADD_FLAG = 1;
 /**redis数据删除 */
 export const CHANGE_DEL_FLAG = -1;
 
-/**Redis页信息 */
-export class RedisPageData<T> {
-    constructor(
-        public page = 1,
-        public pageSize = 10,
-        public dataList: T[] = [],
-        public total = 0,
-        public hasMore = total - (page - 1) * pageSize > pageSize,
-        public skip = (page - 1) * pageSize,
-    ) {}
-}
-
 /**全局唯一id枚举 */
 export const enum GLOBAL_VALUE_BASE_ENTITY_ID {
     /**每日接口统计信息 */
