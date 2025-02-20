@@ -96,19 +96,15 @@ export class NetWorkHelper {
     postUrl<T, U>(apiPath: string, body: T, isNeedToken = true) {
         return new Promise<U>((resolve, reject) => {
             try {
-                request.post(
-                    apiPath,
-                    { json: body, headers: this.__getHeaders(isNeedToken), timeout: HTTP_TIME_OUT_INTERVAL },
-                    (err, resp, body: ServerUtil.ApiReturn) => {
-                        if (err || !body) {
-                            return reject(err);
-                        }
-                        if (!body.success) {
-                            return reject(body);
-                        }
-                        resolve(body.result);
-                    },
-                );
+                request.post(apiPath, { json: body, headers: this.__getHeaders(isNeedToken), timeout: HTTP_TIME_OUT_INTERVAL }, (err, resp, body: any) => {
+                    if (err || !body) {
+                        return reject(err);
+                    }
+                    // if (!body.success) {
+                    //     return reject(body);
+                    // }
+                    resolve(body);
+                });
             } catch (e) {
                 reject(e);
             }
