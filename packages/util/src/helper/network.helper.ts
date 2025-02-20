@@ -87,7 +87,33 @@ export class NetWorkHelper {
             }
         });
     }
-
+    /**
+     * Post请求
+     * @param apiPath
+     * @param body
+     * @returns
+     */
+    postUrl<T, U>(apiPath: string, body: T, isNeedToken = true) {
+        return new Promise<U>((resolve, reject) => {
+            try {
+                request.post(
+                    apiPath,
+                    { json: body, headers: this.__getHeaders(isNeedToken), timeout: HTTP_TIME_OUT_INTERVAL },
+                    (err, resp, body: ServerUtil.ApiReturn) => {
+                        if (err || !body) {
+                            return reject(err);
+                        }
+                        if (!body.success) {
+                            return reject(body);
+                        }
+                        resolve(body.result);
+                    },
+                );
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
     /**
      * Post带二进制文件的请求
      * @param apiPath
