@@ -1,6 +1,6 @@
-import { Logger } from "../log4j/log4j";
-import { MQ_DLX_DEFAULT_RETRY_INTERVAL } from "./mq.constants";
-import { MqHelper } from "./mq.helper";
+import { Logger } from "../log4j/log4j.js";
+import { MQ_DLX_DEFAULT_RETRY_INTERVAL } from "./mq.constants.js";
+import { MqHelper } from "./mq.helper.js";
 
 export class MqConsumer {
     private __mqHelper: MqHelper;

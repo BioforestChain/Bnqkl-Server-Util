@@ -1,3 +1,3 @@
-export * from "./@types";
-export * from "./base-patch";
-export * from "./base-upgrade.service";
+export * from "./@types.js";
+export * from "./base-patch.js";
+export * from "./base-upgrade.service.js";

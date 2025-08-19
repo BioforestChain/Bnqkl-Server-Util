@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import { REDIS_DATA_TYPE } from "./redis.constant";
+import type { REDIS_DATA_TYPE } from "./redis.constant.js";
 
 export class RedisHelper {
     static getDataKey(name: string, entityId: string) {

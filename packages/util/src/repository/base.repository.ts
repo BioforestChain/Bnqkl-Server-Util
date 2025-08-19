@@ -1,5 +1,6 @@
-import { DataSource, EntityTarget, FindManyOptions, FindOneOptions, FindOptionsWhere, Repository } from "typeorm";
-import { BasePageData, PageData } from "../helper";
+import type { DataSource, EntityTarget, FindManyOptions, FindOneOptions, FindOptionsWhere} from "typeorm";
+import { Repository } from "typeorm";
+import { BasePageData, PageData } from "../helper/index.js";
 
 export class BaseRepository<T extends {}> extends Repository<T> {
     constructor(target: EntityTarget<T>, dataSource: DataSource) {

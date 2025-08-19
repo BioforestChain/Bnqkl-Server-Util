@@ -1,10 +1,10 @@
 import { Injectable } from "@bnqkl/util-node";
-import { memTimeCache, MEM_TIME_CACHE_STRATEGY, sleep } from "../../helper";
-import { BFMetaSignUtil } from "@bfmeta/sign-util";
+import { memTimeCache, MEM_TIME_CACHE_STRATEGY, sleep } from "../../helper/index.js";
+import type { BFMetaSignUtil } from "@bfmeta/sign-util";
 import { PromiseOut } from "@bnqkl/util-node";
-import { GLOBAL_VALUE_BASE_ENTITY_ID, MQ_BASE_KEY_TYPE, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant";
-import { RedisRepository } from "../redis.repository";
-import { Logger } from "../../log4j/log4j";
+import { GLOBAL_VALUE_BASE_ENTITY_ID, MQ_BASE_KEY_TYPE, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant.js";
+import { RedisRepository } from "../redis.repository.js";
+import { Logger } from "../../log4j/log4j.js";
 
 /**全局的Redis数据操作模型基类 */
 @Injectable()
@@ -28,7 +28,7 @@ export abstract class GlobalValueRedisBaseRepository<BusinessConfig extends {} =
         return this.__serverKeyPair.promise;
     }
 
-    async verifyKey(key: string) {
+    async verifyKey(key: string): Promise<Uint8Array> {
         const clientPublicKey = process.env["clientPublicKey"] as string;
         const serverKeypair = await this.getServerKeypair();
         const decryptConfigBytes = this.getBfmetaSignUtil().asymmetricDecrypt(
@@ -63,7 +63,7 @@ export abstract class GlobalValueRedisBaseRepository<BusinessConfig extends {} =
     @memTimeCache({ time: MEM_TIME_CACHE_STRATEGY.ONE_SECOND })
     async getConfig(): Promise<BusinessConfig> {
         let allKeys = await this.getAllKeys(GLOBAL_VALUE_BASE_ENTITY_ID.CONFIG);
-        const config = {};
+        const config: any = {};
         for (const key of allKeys) {
             if (key === "businessConfig") {
                 // 忽略旧key

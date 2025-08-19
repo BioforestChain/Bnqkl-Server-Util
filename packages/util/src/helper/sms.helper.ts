@@ -1,9 +1,9 @@
-import { COUNTRY_CODE, HTTP_TIME_OUT_INTERVAL, MSG_CODE_EXPIRE_TIME, MSG_CODE_INTERVAL } from "../constants";
-import { Logger } from "../log4j/log4j";
+import { COUNTRY_CODE, HTTP_TIME_OUT_INTERVAL, MSG_CODE_EXPIRE_TIME, MSG_CODE_INTERVAL } from "../constants/index.js";
+import { Logger } from "../log4j/log4j.js";
 import * as request from "request";
-import { redisCore } from "../redis";
-import { CommonHelper } from "./common.helper";
-import { RedisLock } from "./redis-lock.helper";
+import { redisCore } from "../redis/index.js";
+import { CommonHelper } from "./common.helper.js";
+import { RedisLock } from "./redis-lock.helper.js";
 
 export class SmsHelper {
     constructor(private __smsConfig: ServerUtil.Config.CustomerConfig["sms"]) {}

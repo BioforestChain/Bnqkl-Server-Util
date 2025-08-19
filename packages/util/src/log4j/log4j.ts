@@ -1,8 +1,8 @@
 import Chalk from "chalk";
 import * as Log4js from "log4js";
 import * as Util from "util";
-import { timeFormater } from "../helper/timeTool.helper";
-import Log4jsConfig from "./log4jConfig";
+import { timeFormater } from "../helper/timeTool.helper.js";
+import Log4jsConfig from "./log4jConfig.js";
 
 // 定义日志级别
 export enum LoggerLevel {

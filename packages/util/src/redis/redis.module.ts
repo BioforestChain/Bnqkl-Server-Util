@@ -1,5 +1,5 @@
 import { Module, forwardRef } from "@nestjs/common";
-import { RequestStatRedisRepository } from "./repository";
+import { RequestStatRedisRepository } from "./repository/index.js";
 
 @Module({
     imports: [],

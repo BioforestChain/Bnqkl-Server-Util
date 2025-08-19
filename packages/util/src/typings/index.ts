@@ -1,2 +1,2 @@
-export * from "./base.types";
-export * from "./cluster.types";
+export * from "./base.types.js";
+export * from "./cluster.types.js";

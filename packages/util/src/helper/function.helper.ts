@@ -1,4 +1,4 @@
-import { Logger } from "../log4j/log4j";
+import { Logger } from "../log4j/log4j.js";
 
 export const $let = <I, O>(input: I, output: (input: I) => O) => output(input);
 export const $also = <I>(input: I, output: (input: I) => unknown) => (output(input), input);
@@ -85,7 +85,7 @@ export const memTimeCache = (options: $MemTimeCacheOptions = {}) => {
                     endTime: number;
                 }
             >();
-            desp.value = function (...args) {
+            desp.value = function (...args: any[]) {
                 const key = argsToKey(args);
                 let cache = cacheMap.get(key);
                 if (cache === undefined) {

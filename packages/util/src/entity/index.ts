@@ -1,2 +1,2 @@
-export * from "./base.entity";
-export * from "./fsm.entity";
+export * from "./base.entity.js";
+export * from "./fsm.entity.js";

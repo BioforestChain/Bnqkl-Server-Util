@@ -1,2 +1,2 @@
-export * from "./static.config";
-export * from "./@types";
+export * from "./static.config.js";
+export * from "./@types.js";

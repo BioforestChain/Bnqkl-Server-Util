@@ -1,7 +1,8 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from "@nestjs/common";
-import { Request, Response } from "express";
-import { timeFormater } from "../../helper";
-import { Logger } from "../../log4j/log4j";
+import type { ArgumentsHost, ExceptionFilter} from "@nestjs/common";
+import { Catch, HttpException, HttpStatus } from "@nestjs/common";
+import type { Request, Response } from "express";
+import { timeFormater } from "../../helper/index.js";
+import { Logger } from "../../log4j/log4j.js";
 
 /**
  * 全局异常捕获过滤器

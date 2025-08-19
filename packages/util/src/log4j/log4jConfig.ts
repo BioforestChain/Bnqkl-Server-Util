@@ -1,4 +1,4 @@
-import { Configuration } from "log4js";
+import type { Configuration } from "log4js";
 const baseLogPath = process.cwd() + "/logs";
 
 const Log4jsConfig: Configuration = {

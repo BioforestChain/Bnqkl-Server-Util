@@ -1,5 +1,5 @@
 import * as fs from "node:fs";
-import { $assign } from "../helper";
+import { $assign } from "../helper/index.js";
 
 abstract class FileConfigFactory<T extends {}> {
     private _configData?: T;

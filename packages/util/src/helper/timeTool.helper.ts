@@ -1,16 +1,20 @@
 import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-import weekday from "dayjs/plugin/weekday";
-import "dayjs/locale/zh-cn";
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const timezone = require("dayjs/plugin/timezone");
+const utc = require("dayjs/plugin/utc");
+const weekday = require("dayjs/plugin/weekday");
+require("dayjs/locale/zh-cn");
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+//@ts-ignore
 dayjs.tz.setDefault("Asia/Shanghai");
 dayjs.extend(weekday);
 dayjs.locale("zh-cn");
 
 export function timeTool(date?: dayjs.ConfigType, format?: dayjs.OptionType, locale?: string, strict?: boolean): dayjs.Dayjs {
+    //@ts-ignore
     return dayjs(date, format, locale, strict).tz();
 }
 

@@ -1,4 +1,4 @@
-import { MqHelper } from "./mq.helper";
+import { MqHelper } from "./mq.helper.js";
 
 export class MqPublisher {
     private __mqHelper: MqHelper;

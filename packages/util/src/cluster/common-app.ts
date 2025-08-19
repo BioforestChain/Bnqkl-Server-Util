@@ -1,7 +1,7 @@
-import { INestApplication } from "@nestjs/common";
-import { baseIpcHelpers } from "../helper/ipc.helper";
+import type { INestApplication } from "@nestjs/common";
+import { baseIpcHelpers } from "../helper/ipc.helper.js";
 import { EasyMap, PromiseOut } from "@bnqkl/util-node";
-import { BASE_CMD } from "../constants";
+import { BASE_CMD } from "../constants/index.js";
 
 export abstract class CommonApp {
     app!: INestApplication;

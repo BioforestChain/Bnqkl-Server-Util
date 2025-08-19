@@ -1,14 +1,14 @@
 import { Column } from "typeorm";
-import { BaseEntityWithUuId } from "./base.entity";
+import { BaseEntityWithUuId } from "./base.entity.js";
 
 export abstract class FSMEntity<StateID extends number> extends BaseEntityWithUuId {
     /** 状态 */
     @Column("smallint")
-    state: StateID;
+    state!: StateID;
 
     /**
      * 逻辑删除
      */
     @Column({ default: 0, select: false, name: "del_flag" })
-    delFlag: number;
+    delFlag!: number;
 }

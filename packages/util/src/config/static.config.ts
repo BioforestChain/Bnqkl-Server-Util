@@ -1,5 +1,5 @@
 import * as path from "path";
-import { JsonFileConfigFactory } from "./file-config-factory";
+import { JsonFileConfigFactory } from "./file-config-factory.js";
 
 export const CONFIG_PARAM = {
     PATH: Symbol("PATH"),

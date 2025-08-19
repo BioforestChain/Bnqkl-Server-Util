@@ -1,4 +1,4 @@
-import { FSMObj } from "./fsm-obj";
+import type { FSMObj } from "./fsm-obj.js";
 
 /**状态基类 */
 export abstract class FSMState<StateID extends number> implements ServerUtil.FSM.FSMState<StateID> {

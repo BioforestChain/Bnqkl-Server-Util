@@ -1,8 +1,8 @@
 // import COS from "cos-nodejs-sdk-v5";
-// import { HTTP_TIME_OUT_INTERVAL, IMAGE_AUDIT_LEVEL, REDIS_ID_CARD_OCR_EXPIRE_TIME, TEXT_AUDIT_LEVEL } from "../constants";
-// import { Logger } from "../log4j/log4j";
-// import { redisCore } from "../redis";
-// import { memTimeCache, MEM_TIME_CACHE_STRATEGY } from "./function.helper";
+// import { HTTP_TIME_OUT_INTERVAL, IMAGE_AUDIT_LEVEL, REDIS_ID_CARD_OCR_EXPIRE_TIME, TEXT_AUDIT_LEVEL } from "../constants/index.js";
+// import { Logger } from "../log4j/log4j.js";
+// import { redisCore } from "../redis/index.js";
+// import { memTimeCache, MEM_TIME_CACHE_STRATEGY } from "./function.helper.js";
 // import * as request from "request";
 // import * as CryptoJS from "crypto-js";
 // import * as tencentcloud from "tencentcloud-sdk-nodejs-ocr";

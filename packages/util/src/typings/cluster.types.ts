@@ -1,4 +1,4 @@
-import { BASE_CMD } from "../constants";
+import type { BASE_CMD } from "../constants/index.js";
 
 export {};
 declare global {

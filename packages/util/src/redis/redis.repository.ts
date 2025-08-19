@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
-import { PageData } from "../helper";
-import { redisCore } from "./redis.core";
-import { RedisHelper } from "./redis.helper";
+import { PageData } from "../helper/index.js";
+import { redisCore } from "./redis.core.js";
+import { RedisHelper } from "./redis.helper.js";
 
 /**RedisRepository */
 export class RedisRepository implements ServerUtil.Redis.RedisRepository {

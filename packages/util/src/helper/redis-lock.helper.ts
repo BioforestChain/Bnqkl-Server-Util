@@ -1,8 +1,8 @@
-import { Logger } from "../log4j/log4j";
-import { redisCore } from "../redis";
-import { CommonHelper } from "./common.helper";
-import { $asyncAllNoNullMap, $asyncNoNullMap } from "./function.helper";
-import { sleep } from "./timers.helper";
+import { Logger } from "../log4j/log4j.js";
+import { redisCore } from "../redis/index.js";
+import { CommonHelper } from "./common.helper.js";
+import { $asyncAllNoNullMap, $asyncNoNullMap } from "./function.helper.js";
+import { sleep } from "./timers.helper.js";
 
 const lockExpireTime = 60; // 默认锁过期时间60秒，低于30秒将重新续期到60
 const lockTimeoutMs = 3 * 60 * 1000; // 上锁重试超时时间3分钟

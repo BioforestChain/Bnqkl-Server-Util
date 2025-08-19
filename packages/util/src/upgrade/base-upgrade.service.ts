@@ -1,16 +1,16 @@
 import * as path from "path";
 import * as fs from "fs";
 import { InjectDataSource } from "@nestjs/typeorm";
-import { DataSource } from "typeorm";
-import { redisCore } from "../redis";
-import { CommonHelper, sleep } from "../helper";
-import { Logger } from "../log4j/log4j";
+import type { DataSource } from "typeorm";
+import { redisCore } from "../redis/index.js";
+import { CommonHelper, sleep } from "../helper/index.js";
+import { Logger } from "../log4j/log4j.js";
 
 const upgradeRootPath = path.join(process.cwd(), "DB");
 
 export abstract class BaseUpgradeService {
     @InjectDataSource()
-    private readonly __dataSource: DataSource;
+    private readonly __dataSource!: DataSource;
 
     /**mysql版本号 */
     MYSQL_VERSION_KEY = "mysqlVersionKey";
@@ -123,12 +123,12 @@ export abstract class BaseUpgradeService {
         for (const { version, describe, method } of this.patchVersionsArray) {
             if (!currentVersion || CommonHelper.compareVersion(currentVersion, version) < 0) {
                 Logger.info(`当前补丁版本号为 ${currentVersion}, 正在更新 ${version} ${describe}`);
-                if (!this[method]) {
+                if (!(this as any)[method]) {
                     const msg = `没有找到更新函数 ${method}`;
                     Logger.warn(msg);
                     throw msg;
                 }
-                await this[method]();
+                await (this as any)[method]();
                 await redisCore.redis.set(this.PATCH_VERSION_KEY, version);
                 currentVersion = version;
             }

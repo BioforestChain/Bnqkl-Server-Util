@@ -1,10 +1,10 @@
 import * as amqp from "amqplib";
 import * as events from "events";
-import { Logger } from "../log4j/log4j";
+import { Logger } from "../log4j/log4j.js";
 import { PromiseOut } from "@bnqkl/util-node";
 
 class RabbitMQCore extends events.EventEmitter {
-    private __connectionPromise?: PromiseOut<amqp.Connection>;
+    private __connectionPromise?: PromiseOut<amqp.ChannelModel>;
     private __isReconnect = false;
 
     async getConnection(config: ServerUtil.Mq.ServerConfig) {

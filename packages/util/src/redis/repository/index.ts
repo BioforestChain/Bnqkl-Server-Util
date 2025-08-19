@@ -1,1 +1,1 @@
-export * from "./request-stat.redis-repository";
+export * from "./request-stat.redis-repository.js";

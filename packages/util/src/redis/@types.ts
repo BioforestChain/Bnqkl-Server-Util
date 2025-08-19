@@ -1,5 +1,5 @@
-import { PageData } from "../helper";
-import { REDIS_DATA_TYPE } from "./redis.constant";
+import type { PageData } from "../helper/index.js";
+import type { REDIS_DATA_TYPE } from "./redis.constant.js";
 
 export {};
 declare global {

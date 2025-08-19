@@ -1,9 +1,9 @@
-import { Channel, ConfirmChannel, Options } from "amqplib";
-import { DEAD_LETTER_POSTFIX, DELAY_RETRY_POSTFIX, EXCHANGE_TYPE, MQ_CONSUME_MAX_SPEED } from "./mq.constants";
+import type { Channel, ConfirmChannel, Options } from "amqplib";
+import { DEAD_LETTER_POSTFIX, DELAY_RETRY_POSTFIX, EXCHANGE_TYPE, MQ_CONSUME_MAX_SPEED } from "./mq.constants.js";
 import { PromiseOut } from "@bnqkl/util-node";
-import { Logger } from "../log4j/log4j";
-import { rabbitMQCore } from "./rabbit-mq.core";
-import { RedisLock } from "../helper";
+import { Logger } from "../log4j/log4j.js";
+import { rabbitMQCore } from "./rabbit-mq.core.js";
+import { RedisLock } from "../helper/index.js";
 
 export class MqHelper {
     private __initQueuePromiseMap = new Map<string, PromiseOut<void>>();

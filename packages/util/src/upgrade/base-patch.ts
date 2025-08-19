@@ -1,4 +1,4 @@
-import { redisCore } from "../redis";
+import { redisCore } from "../redis/index.js";
 
 export abstract class BasePatch {
     get redis() {

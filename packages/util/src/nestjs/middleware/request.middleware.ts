@@ -1,7 +1,8 @@
-import { forwardRef, Inject, Injectable, NestMiddleware } from "@nestjs/common";
-import { NextFunction, Request, Response } from "express";
-import { Logger } from "../../log4j/log4j";
-import { RequestStatRedisRepository } from "../../redis";
+import type { NestMiddleware } from "@nestjs/common";
+import { forwardRef, Inject, Injectable } from "@nestjs/common";
+import type { NextFunction, Request, Response } from "express";
+import { Logger } from "../../log4j/log4j.js";
+import { RequestStatRedisRepository } from "../../redis/index.js";
 
 @Injectable()
 export class HttpRequestMiddleware implements NestMiddleware {

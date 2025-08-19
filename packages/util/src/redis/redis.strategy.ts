@@ -1,7 +1,7 @@
 import { EventEmitterPro } from "@bnqkl/util-node";
-import { CHANGE_ADD_FLAG, CHANGE_DEL_FLAG, REDIS_DATA_TYPE } from "./redis.constant";
-import { redisCore } from "./redis.core";
-import { RedisHelper } from "./redis.helper";
+import { CHANGE_ADD_FLAG, CHANGE_DEL_FLAG, REDIS_DATA_TYPE } from "./redis.constant.js";
+import { redisCore } from "./redis.core.js";
+import { RedisHelper } from "./redis.helper.js";
 
 /**Redis存储策略 */
 export abstract class RedisStrategy<OptionType extends ServerUtil.Redis.RedisOptionType>

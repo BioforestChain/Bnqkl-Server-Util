@@ -1,7 +1,7 @@
-export * from "./@types";
+export * from "./@types.js";
 
-export * from "./mq.helper";
-export * from "./rabbit-mq.core";
-export * from "./mq.constants";
-export * from "./publisher";
-export * from "./consumer";
+export * from "./mq.helper.js";
+export * from "./rabbit-mq.core.js";
+export * from "./mq.constants.js";
+export * from "./publisher.js";
+export * from "./consumer.js";

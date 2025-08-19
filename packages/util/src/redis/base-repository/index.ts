@@ -1,1 +1,1 @@
-export * from "./global-value.redis-base-repository";
+export * from "./global-value.redis-base-repository.js";

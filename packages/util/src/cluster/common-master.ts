@@ -1,8 +1,9 @@
-import cluster, { Worker } from "cluster";
-import { sleep } from "../helper";
-import { Logger } from "../log4j/log4j";
-import { redisCore } from "../redis";
-import { BASE_CMD, GLOBAL_INITING, LOG4JS_INSTANCE } from "../constants";
+import type { Worker } from "cluster";
+import cluster from "cluster";
+import { sleep } from "../helper/index.js";
+import { Logger } from "../log4j/log4j.js";
+import { redisCore } from "../redis/index.js";
+import { BASE_CMD, GLOBAL_INITING, LOG4JS_INSTANCE } from "../constants/index.js";
 
 export abstract class CommonMaster {
     private __workerMap = new Map<string, Worker>();

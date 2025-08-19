@@ -1,6 +1,7 @@
-import { createClient, RedisClientType, RedisDefaultModules } from "redis";
+import type { RedisClientType, RedisDefaultModules } from "redis";
+import { createClient } from "redis";
 import type { $PromiseMaybe } from "@bnqkl/util-node";
-import { Logger } from "../log4j/log4j";
+import { Logger } from "../log4j/log4j.js";
 export interface $RedisClient extends RedisClientType<RedisDefaultModules> {}
 class RedisCore {
     private __redis!: $RedisClient;

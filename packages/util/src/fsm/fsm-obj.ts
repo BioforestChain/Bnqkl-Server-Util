@@ -1,7 +1,7 @@
-import { FSMEntity } from "../entity";
-import { Logger } from "../log4j/log4j";
-import { FSMMgr } from "./fsm-mgr";
-import { FSMState } from "./fsm-state";
+import type { FSMEntity } from "../entity/index.js";
+import { Logger } from "../log4j/log4j.js";
+import type { FSMMgr } from "./fsm-mgr.js";
+import type { FSMState } from "./fsm-state.js";
 
 /**有限状态机的逻辑对象 */
 export abstract class FSMObj<

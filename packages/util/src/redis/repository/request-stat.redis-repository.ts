@@ -1,8 +1,8 @@
 import { Injectable } from "@bnqkl/util-node";
-import { timeFormaterToDate } from "../../helper";
-import { GLOBAL_VALUE_BASE_ENTITY_ID, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant";
-import { redisCore } from "../redis.core";
-import { RedisRepository } from "../redis.repository";
+import { timeFormaterToDate } from "../../helper/index.js";
+import { GLOBAL_VALUE_BASE_ENTITY_ID, REDIS_BASE_REPOSITORY_NAME } from "../redis.constant.js";
+import { redisCore } from "../redis.core.js";
+import { RedisRepository } from "../redis.repository.js";
 
 @Injectable()
 export class RequestStatRedisRepository extends RedisRepository {

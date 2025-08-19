@@ -1,2 +1,2 @@
-export * from "./common-master";
-export * from "./common-app";
+export * from "./common-master.js";
+export * from "./common-app.js";

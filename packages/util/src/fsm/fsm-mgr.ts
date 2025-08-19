@@ -1,4 +1,4 @@
-import { FSMState } from "./fsm-state";
+import type { FSMState } from "./fsm-state.js";
 
 /**有限状态机管理器 */
 export abstract class FSMMgr<StateID extends number, State extends FSMState<StateID>> implements ServerUtil.FSM.FSMMgr<StateID, State> {

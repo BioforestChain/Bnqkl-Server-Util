@@ -1,9 +1,9 @@
 import { IPC_Client, IPC_Server } from "@bnqkl/ipc";
 import { ipcReqAsync, registerIpcRes } from "@bnqkl/ipc-request";
 import { PromiseOut } from "@bnqkl/util-node";
-import { AddressInfo } from "net";
-import { BASE_CMD } from "../constants";
-import { Logger } from "../log4j/log4j";
+import type { AddressInfo } from "net";
+import { BASE_CMD } from "../constants/index.js";
+import { Logger } from "../log4j/log4j.js";
 
 export class IPCHelpers<T = ServerUtil.Cluster.IPC_Request> {
     private addressPromise?: PromiseOut<string | AddressInfo>;

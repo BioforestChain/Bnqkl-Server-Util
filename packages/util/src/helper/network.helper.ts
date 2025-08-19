@@ -1,12 +1,12 @@
 import * as request from "request";
-import { HTTP_TIME_OUT_INTERVAL } from "../constants";
+import { HTTP_TIME_OUT_INTERVAL } from "../constants/index.js";
 
 /*
  * 发送http外部请求
  */
 export class NetWorkHelper {
     private __httpHost = "";
-    private __httpToken: string;
+    private __httpToken!: string;
 
     constructor(ip: string, port: number, globalPrefix?: string) {
         this.__httpHost = `http://${ip}:${port}${globalPrefix ? (globalPrefix.startsWith("/") ? globalPrefix : `/${globalPrefix}`) : ``}`;

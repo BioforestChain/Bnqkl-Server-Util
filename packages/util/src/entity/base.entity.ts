@@ -1,15 +1,15 @@
 import { PrimaryGeneratedColumn, Column } from "typeorm";
-import { CommonHelper } from "../helper";
+import { CommonHelper } from "../helper/index.js";
 
 export abstract class BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column("datetime", { name: "created_time" })
-    createdTime: Date;
+    createdTime!: Date;
 
     @Column("datetime", { name: "updated_time" })
-    updatedTime: Date;
+    updatedTime!: Date;
 }
 
 export abstract class BaseEntityWithUuId extends BaseEntity {
