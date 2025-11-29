@@ -1,46 +1,17 @@
-## 1.redis 使用
+# Bnqkl-Server-Util (English)
+For Chinese version please see [README-zh](README-zh.md).
 
-### 1.1.需要重写策略类
+## Overview
+Server-side utility toolkit (Redis strategies, MQ helpers, config loader) for Bnqkl/BFMeta services.
 
-```typescript
-export class RedisBaseStrategy<OptionType extends Redis.RedisOptionType, RedisType extends string = string> extends RedisStrategy<OptionType> {
-    constructor(redisType: RedisType, options: PlusMeta.RedisOptionDef<OptionType>) {
-        super(redisType, options);
-    }
+## Usage
+- Extend `RedisBaseStrategy` for custom Redis types.
+- Define business models via `RedisModel` and enable bloom filters as needed.
+- MQ: keep exchange and routing keys defined in business modules.
+- Config: `StaticConfigFactory` to load typed configs from JSON.
 
-    ...
-}
-```
-
-### 1.2.定义业务操作类
-
-```typescript
-export class GlobalValueRedisModel extends RedisModel<GlobalValueRedisOptionType, GlobalValueEntityId> {
-    constructor() {
-        super({useBloom: false}, RedisType.globalValue, new RedisBaseStrategy(RedisType.globalValue, globalValueOptions));
-    }
-
-    async getXX() {
-
-    }
-
-    async setXX() {
-
-    }
-
-    ...
-}
-```
-
-## 2.mq 使用
-
-原先的交换机名称和路由 key 都应该放在业务模块里面去定义
-
-## 3.config 使用
-
-```typescript
-import { StaticConfigFactory } from "@bnqkl/server-util";
-
-const staticConfigFactory = new StaticConfigFactory<PlusMeta.CONFIG.ServerConfig>("config/serverConfig.json");
-export const staticConfig = staticConfigFactory.getConfig();
-```
+## Contribution
+- Treat as toolkit (Layer 3): prefer Apache-style openness; keep TS strict.
+- Reuse shared strategies/models; avoid duplicated Redis/MQ wrappers.
+- Add small tests for new adapters; document required env/config keys.
+- Branches: `feature/<scope>`, `fix/<issue>`; concise commits.
