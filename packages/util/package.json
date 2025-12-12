@@ -1,6 +1,6 @@
 {
     "name": "@bnqkl/server-util",
-    "version": "1.2.0",
+    "version": "3.0.0",
     "description": "bnqkl server util",
     "main": "build/src/index.js",
     "type": "commonjs",
@@ -39,5 +39,5 @@
         "@types/express": "^4.17.13",
         "@types/request": "^2.48.8"
     },
-    "gitHead": "8921846fe5ebd3988807dcff97238d7192d75809"
+    "gitHead": "17a4df131b5d7b83984237c30358c6c3c76420c6"
 }
